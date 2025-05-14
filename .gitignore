@@ -28,3 +28,9 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+# Logo
+public/img/favicon-32x32.png
+public/img/logo.png
+public/img/logo_icon.png
+public/img/logo_landscape.png
