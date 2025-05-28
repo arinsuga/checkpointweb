@@ -295,9 +295,13 @@ class AbsenController extends Controller
     //checkHistory
     public function checkHistoryAdmin()
     {
+        // return view($this->sViewRoot.'.check-history', [
+        //     'admin' => true,
+        //     'users' => $this->dataUsers->dnb()
+        // ]);
         return view($this->sViewRoot.'.check-history', [
             'admin' => true,
-            'users' => $this->dataUsers->dnb()
+            'users' => $this->dataUsers->all()
         ]);
     }
 
