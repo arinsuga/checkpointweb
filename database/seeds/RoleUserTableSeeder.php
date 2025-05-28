@@ -41,6 +41,14 @@ class RoleUserTableSeeder extends Seeder
             "updated_at" => null,
         ]); 
 
+        DB::table("role_user")->insert([
+            "id" => 4,
+            "app_id" => 1,
+            "role_id" => 3,
+            "user_id" => 4,
+            "created_at" => null,
+            "updated_at" => null,
+        ]); 
 
     }
 }
