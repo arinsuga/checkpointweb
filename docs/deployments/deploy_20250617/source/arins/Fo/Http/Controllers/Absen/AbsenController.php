@@ -269,8 +269,8 @@ class AbsenController extends Controller
                     'attend_dt' => Formater::dateMonth($value->attend_dt),
                     
                     'checkin_time' => (!isset($value->checkin_utcmillis)) ? '' :
-                    "Tanggal: " . Formater::date($value->checkin_time) .
-                    " Jam: " . Formater::time(ConvertDate::DatetimeByTimezone($value->checkin_time, $value->checkin_utctz)) .
+                    "Tanggal: " . Formater::date(ConvertDate::millisToDatetime($value->checkin_utcmillis, $value->checkin_utcoffset)) .
+                    " Jam: " . Formater::time(ConvertDate::millisToDatetime($value->checkin_utcmillis, $value->checkin_utcoffset)) .
                     " " . config('a1.date.timezoneinfo.' . ($value->checkin_utcoffset) .'.short') .
                     " ( " . ConvertDate::millisOffsetDesc($value->checkin_utcoffset) . " ) ",
 
@@ -278,8 +278,8 @@ class AbsenController extends Controller
                     'checkin_description' => $value->checkin_description,
                     
                     'checkout_time' => (!isset($value->checkout_utcmillis)) ? '' :
-                    "Tanggal ". Formater::date($value->checkout_time) .
-                    " Jam: " . Formater::time(ConvertDate::DatetimeByTimezone($value->checkout_time, $value->checkout_utctz)) .
+                    "Tanggal ". Formater::date(ConvertDate::millisToDatetime($value->checkout_utcmillis, $value->checkout_utcoffset)) .
+                    " Jam: " . Formater::time(ConvertDate::millisToDatetime($value->checkout_utcmillis, $value->checkout_utcoffset)) .
                     " " . config('a1.date.timezoneinfo.' . ($value->checkout_utcoffset) .'.short') .
                     " ( " . ConvertDate::millisOffsetDesc($value->checkout_utcoffset) . " ) ",
 

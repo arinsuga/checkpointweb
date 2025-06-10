@@ -253,58 +253,6 @@ function getTZ() {
 
     // Get current timezone info
     var now = new Date();
-    var now_offset_minutes_value = now.getTimezoneOffset(); // getTimezoneOffset returns negative values for positive offsets
-    var now_offset_hours_value = now_offset_minutes_value / 60;
-
-    var utc_tz_value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var utc_offset_value = -now_offset_hours_value;
-    var utc_millis_value = now.getTime();
-
-    utc_tz.value = utc_tz_value;
-    utc_offset.value = utc_offset_value;
-    utc_millis.value = utc_millis_value;
-
-}
-
-function getTZ_OLD_UNUSED_3() {
-
-    // Get current timezone info
-    var now = new Date();
-    var now_offset_minutes_value = -now.getTimezoneOffset(); // getTimezoneOffset returns negative values for positive offsets
-    var now_offset_hours_value = now_offset_minutes_value / 60;
-
-    var utc_tz_value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var utc_offset_value = now_offset_hours_value;
-    var utc_millis_value = now.setHours(now.getHours() - now_offset_hours_value);
-
-    utc_tz.value = utc_tz_value;
-    utc_offset.value = utc_offset_value;
-    utc_millis.value = utc_millis_value;
-
-}
-
-function getTZ_OLD_UNUSED_2() {
-
-    // Get current timezone info
-    var now = new Date();
-    var now_offset_minutes_value = -now.getTimezoneOffset(); // getTimezoneOffset returns negative values for positive offsets
-    var now_offset_hours_value = now_offset_minutes_value / 60;
-    var now_millis_value = now.getTime();
-
-    var utc_tz_value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var utc_millis_value = now_millis_value - (now_offset_hours_value * 3600000);
-    var utc_offset_value = now_offset_hours_value;
-
-    utc_tz.value = utc_tz_value;
-    utc_millis.value = utc_millis_value;
-    utc_offset.value = utc_offset_value;
-
-}
-
-function getTZ_OLD_UNUSED_1() {
-
-    // Get current timezone info
-    var now = new Date();
     var utc = new Date(
         now.getUTCFullYear(),
         now.getUTCMonth(),
@@ -324,8 +272,6 @@ function getTZ_OLD_UNUSED_1() {
     utc_offset.value = utc_offset_value / 60;
 
 }
-
-getTZ();
 
 </script>
 
