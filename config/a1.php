@@ -12,16 +12,17 @@ return [
     */
 
     'company' => [
-        'version' => '1.0',
-        'name' => 'Demo',
-        'appname' => 'Absen Tracking',
+        'version' => '3.1.0',
+        'name' => env('APP_COMPANY_NAME', 'Company Name'),
+        'appname' => env('APP_NAME', 'Demo App'),
         'website' => 'http://demo.com/',
         'address' => [
-            'street1' => 'Jl. Utama',
-            'street2' => 'Jl. Raya',
-            'city' => 'Jakarta Selatan'
+            'street1' => env('APP_COMPANY_ADDRESS1', 'Jl. Utama'),
+            'street2' => env('APP_COMPANY_ADDRESS1', 'Jl. Raya'),
+            'city' => env('APP_COMPANY_CITY', 'Jakarta Selatan'),
+            'country' => env('APP_COMPANY_COUNTRY', 'Indonesia'),
         ],
-        'copyright' => '2020 - 2021',
+        'copyright' => '&copy; 2025 Company Name',
         'dateformat' => 'd-m-Y'
     ],
 
