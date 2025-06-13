@@ -200,7 +200,7 @@ return [
         'logo' => env('LOGO', 'demo_logo.png'),
         'logo_landscape' => env('LOGO_LANDSCAPE', 'demo_logo_landscape.png'),
         'logo_icon' => env('LOGO_ICON', 'demo_logo_icon.png'),
-        'favicon' => env('FAVICON', 'demo_favicon-32x32.png'),
+        'favicon' => env('FAVICON', 'demo_favicon.png'),
     ],
 
 ];
