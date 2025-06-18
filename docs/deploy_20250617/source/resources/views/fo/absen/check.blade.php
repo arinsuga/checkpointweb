@@ -19,12 +19,18 @@ window.onerror = function (message, url, lineNo){
     return true;
 }
 
-//Variable
-var latitude = document.getElementById("latitude");
-var longitude = document.getElementById("longitude");
+//get HTML Element for Input Forms
 var frmSubmit = document.getElementById("frmSubmit");
 var btnSubmit = document.getElementById("btnSubmit");
 
+//get HTML Element for Location
+var latitude = document.getElementById("latitude");
+var longitude = document.getElementById("longitude");
+
+//get HTML Element for utc
+var utc_tz = document.getElementById("utc_tz");
+var utc_millis = document.getElementById("utc_millis");
+var utc_offset = document.getElementById("utc_offset");
 
 
 if ('geolocation' in navigator) {
@@ -183,6 +189,9 @@ btnSubmit.addEventListener("click", function() {
     //Run getLocation
     getLocation();
 
+    //Run getTZ
+    getTZ();
+
 }); //end event
 
 //Methods
@@ -216,30 +225,29 @@ function showPosition(position) {
     console.log(latitude.value + ',' + longitude.value);
 } //end method
 
-//get HTML Element for utc
-var utc_tz = document.getElementById("utc_tz");
-var utc_millis = document.getElementById("utc_millis");
-var utc_offset = document.getElementById("utc_offset");
 
-// Get current timezone info
-var now = new Date();
-var utc = new Date(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate(),
-    now.getUTCHours(),
-    now.getUTCMinutes(),
-    now.getUTCSeconds(),
-    now.getUTCMilliseconds()
-);
+function getTZ() {
+    // Get current timezone info
+    var now = new Date();
+    var utc = new Date(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds(),
+        now.getUTCMilliseconds()
+    );
 
-var utc_tz_value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-var utc_millis_value = utc.getTime();
-var utc_offset_value = -now.getTimezoneOffset(); // getTimezoneOffset returns negative values for positive offsets
+    var utc_tz_value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var utc_millis_value = utc.getTime();
+    var utc_offset_value = -now.getTimezoneOffset(); // getTimezoneOffset returns negative values for positive offsets
 
-utc_tz.value = utc_tz_value;
-utc_millis.value = utc_millis_value;
-utc_offset.value = utc_offset_value / 60;
+    utc_tz.value = utc_tz_value;
+    utc_millis.value = utc_millis_value;
+    utc_offset.value = utc_offset_value / 60;
+}
+
 
 
 </script>

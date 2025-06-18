@@ -62,6 +62,11 @@ return [
     'datejs' => [
         'timezone' => 'Asia/Jakarta',
         'locale' => 'id',
+        'timzoneinfo' => [
+            '7' => ['short' => 'WIB', 'long' => 'Waktu Indonesia Barat', 'offset' => 'GMT+07:00'],
+            '8' => ['short' => 'WITA', 'long' => 'Waktu Indonesia Tengah', 'offset' => 'GMT+08:00'],
+            '9' => ['short' => 'WIT', 'long' => 'Waktu Indonesia Timur', 'offset' => 'GMT+09:00'],
+        ],
 
         'time' => 'H:i:S',
         'timeampm' => 'G:i:S K',
@@ -99,6 +104,11 @@ return [
     'date' => [
         'timezone' => 'Asia/Jakarta',
         'locale' => 'id_ID',
+        'timezoneinfo' => [
+            '7' => ['short' => 'WIB', 'long' => 'Waktu Indonesia Barat', 'offset' => 'GMT+07:00'],
+            '8' => ['short' => 'WITA', 'long' => 'Waktu Indonesia Tengah', 'offset' => 'GMT+08:00'],
+            '9' => ['short' => 'WIT', 'long' => 'Waktu Indonesia Timur', 'offset' => 'GMT+09:00'],
+        ],
 
         'time' => 'HH:mm:ss',
         'timeampm' => 'hh:mm:ss A',

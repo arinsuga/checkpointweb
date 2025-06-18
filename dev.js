@@ -50,3 +50,6 @@ console.log(`currentOffsetMinutes : ${nowOffsetMinutes}`);
 console.log(`currentOffsetMillis : ${nowOffsetMillis}`);
 console.log('=======================================');
 console.log(`utcMillis : ${utcMillis}`);
+console.log('=======================================');
+console.log(`utcMillis : ${customMillis}`);
+console.log(`utcMillisToDateTime : ${customMillisDatetime}`);

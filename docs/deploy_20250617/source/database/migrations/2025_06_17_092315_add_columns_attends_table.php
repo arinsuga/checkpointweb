@@ -20,13 +20,13 @@ class AddColumnsAttendsTable extends Migration
             $table->bigInteger('attend_utcmillis')->nullable()->after('attend_dt');
             $table->string('attend_utctz')->nullable()->after('attend_dt');
 
-            $table->integer('checkin_utcoffset')->nullable()->after('checkin_description');
-            $table->bigInteger('checkin_utcmillis')->nullable()->after('checkin_description');
-            $table->string('checkin_utctz')->nullable()->after('checkin_description');
+            $table->integer('checkin_utcoffset')->nullable()->after('checkin_time');
+            $table->bigInteger('checkin_utcmillis')->nullable()->after('checkin_time');
+            $table->string('checkin_utctz')->nullable()->after('checkin_time');
             
-            $table->integer('checkout_utcoffset')->nullable()->after('checkout_description');
-            $table->bigInteger('checkout_utcmillis')->nullable()->after('checkout_description');
-            $table->string('checkout_utctz')->nullable()->after('checkout_description');
+            $table->integer('checkout_utcoffset')->nullable()->after('checkout_time');
+            $table->bigInteger('checkout_utcmillis')->nullable()->after('checkout_time');
+            $table->string('checkout_utctz')->nullable()->after('checkout_time');
 
 
         });

@@ -268,7 +268,13 @@ class AbsenController extends Controller
                     'user_id' => $value->user->id,
                     'name' => $value->user->name,
                     'attend_dt' => Formater::dateMonth($value->attend_dt),
-                    'checkin_time' => 'Tanggal '. Formater::date($value->checkin_time) . ' Jam ' . Formater::time($value->checkin_time) . ' WIB',
+                    
+                    'checkin_time' =>
+                    'Tanggal ' . Formater::date($value->checkin_time) .
+                    ' Jam ' . (!isset($value->checkin_utcoffset) ?
+                    Formater::time($value->checkin_time->addHour()) . ' WITA' :
+                    Formater::time($value->checkin_time)) . ' ' . config('a1.date.timezoneinfo.' . ($value->checkin_utcoffset+1) .'.short'),
+
                     'checkin_address' => $value->checkin_address,
                     'checkin_description' => $value->checkin_description,
                     'checkout_time' => 'Tanggal '. Formater::date($value->checkout_time) . ' Jam ' . Formater::time($value->checkout_time) . ' WIB',
