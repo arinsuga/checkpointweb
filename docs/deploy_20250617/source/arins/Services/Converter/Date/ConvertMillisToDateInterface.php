@@ -1,11 +1,11 @@
 <?php
 namespace Arins\Services\Converter\Date;
 
-interface ConvertInterface extends ConvertStringToDateInterface, ConvertMillisToDateInterface
+interface ConvertMillisToDateInterface
 {
     /**
      * ======================================================
-     * 1. Inherit from ConvertStringToDateInterface
+     * 1. Date Standard 1 Methods
      * ====================================================== */
-
+    public function millisToDatetime($data, $offset = 0);
 }

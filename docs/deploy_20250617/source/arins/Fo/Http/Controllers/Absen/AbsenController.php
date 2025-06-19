@@ -268,10 +268,22 @@ class AbsenController extends Controller
                     'user_id' => $value->user->id,
                     'name' => $value->user->name,
                     'attend_dt' => Formater::dateMonth($value->attend_dt),
-                    'checkin_time' => 'Tanggal '. Formater::date($value->checkin_time) . ' Jam ' . Formater::time($value->checkin_time) . ' WIB',
+                    
+                    'checkin_time' =>
+                    "Tanggal: " . Formater::date($value->checkin_time) .
+                    " Jam: " . Formater::time(ConvertDate::millisToDatetime($value->checkin_utcmillis, $value->checkin_utcoffset)) .
+                    " " . config('a1.date.timezoneinfo.' . ($value->checkin_utcoffset) .'.short') .
+                    " ( " . config('a1.date.timezoneinfo.' . ($value->checkin_utcoffset) .'.offset') . " ) ",
+
                     'checkin_address' => $value->checkin_address,
                     'checkin_description' => $value->checkin_description,
-                    'checkout_time' => 'Tanggal '. Formater::date($value->checkout_time) . ' Jam ' . Formater::time($value->checkout_time) . ' WIB',
+                    
+                    'checkout_time' =>
+                    "Tanggal ". Formater::date($value->checkout_time) .
+                    " Jam: " . Formater::time(ConvertDate::millisToDatetime($value->checkout_utcmillis, $value->checkout_utcoffset)) .
+                    " " . config('a1.date.timezoneinfo.' . ($value->checkout_utcoffset) .'.short') .
+                    " ( " . config('a1.date.timezoneinfo.' . ($value->checkout_utcoffset) .'.offset') . " ) ",
+
                     'checkout_address' => $value->checkout_address,
                     'checkout_description' => $value->checkout_description,
                     'time_elapse' => $time_elapse1 . ':' . $time_elapse2,
