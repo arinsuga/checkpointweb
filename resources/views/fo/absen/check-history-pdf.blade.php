@@ -24,6 +24,7 @@
 
 $(document).ready(function() {
     var username = document.getElementById('username');
+    var tableName = document.getElementById('tableName');
     printPDF();
     function printPDF() {
         var options = {
@@ -43,7 +44,7 @@ $(document).ready(function() {
             }
         };
 
-        TableToPdf('filter', 'checkpoint_report_'+username.value, 'p', 'a4', options);
+        TableToPdf(tableName.value, 'checkpoint_report_'+username.value, 'p', 'a4', options);
         
     } //end if
 
@@ -72,7 +73,7 @@ $(document).ready(function() {
 
 </nav>
 
-<div style="display: none;">
+<div>
     @include('fo.absen.list')
 </div>
 

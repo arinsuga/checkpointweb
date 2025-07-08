@@ -5,6 +5,16 @@
     // });
     //CKEDITOR.replace( 'description' );
 
+function exportToPDF(frmName, history_media,) {
+
+    // event.preventDefault();
+    var historyMedia = document.getElementById(history_media);
+    historyMedia.value = "pdf";
+
+    document.getElementById(frmName).submit();
+
+}
+
 $(document).ready(function() {
 
     // flatpickr(".date");
@@ -23,14 +33,11 @@ $(document).ready(function() {
         document.getElementById('frmData').submit();
     })
 
-    $('#btnPDF').click(function() {
-        event.preventDefault();
+    // $('#btnPDF').click(function() {
 
-        var historyMedia = document.getElementById('history_media');
-        historyMedia.value = "pdf";
+    //     exportToPDF('frmData', 'history_media');
 
-        document.getElementById('frmData').submit();
-    })
+    // })
 
 });
 

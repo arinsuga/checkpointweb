@@ -243,26 +243,42 @@ class AbsenController extends Controller
 
     }
 
-    protected function history($userId=null, $checkpointDate1=null, $checkpointDate2=null)
+    protected function history($userId=null, $startdt=null, $enddt=null)
     {
+        $startDateIso = ConvertDate::strDateToDate($startdt);
+        $endDateIso = ConvertDate::strDateToDate($enddt);
+        if (isset($endDateIso)) {
+
+            $endDateIso = Carbon::create($endDateIso->year, $endDateIso->month, $endDateIso->day, 25, 0, 0);
+
+        } //end if
+        
+        $checkpointDate1 = $startDateIso;
+        $checkpointDate2 = $endDateIso;
+
         $data = null;
+        $users = $this->dataUsers->withAttends($userId, $checkpointDate1, $checkpointDate2);
 
-        $user = User::find($userId);
-        $data['user'] = [
-            'name' => $user->name,
-            'dept' => $user->dept
-        ];
+        $data['users'] = [];
+        foreach ($users as $userKey => $user) {
 
-        $attends = $this->data->getAttendancesCustomFilter($userId, $checkpointDate1, $checkpointDate2);
-        $attend_list = $attends->sortBy('attend_dt');
-        $data['attend_list'] = [];
-        foreach ($attend_list as $key => $value) {
+            array_push($data['users'], [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'dept' => $user->dept,
+                    'startdt' => $startdt,
+                    'enddt' => $enddt,
+                    'attend_list' => [],
+                ]
+            ]);
 
-            if ($value->user_id == $userId) {
-
+            foreach ($user->attends->sortBy('attend_dt') as $attendKey => $value) {
+                
                 $time_elapse1 = $value->checkin_time->diffInHours($value->checkout_time);
                 $time_elapse2 = $value->checkin_time->diff($value->checkout_time)->format('%I:%S');
-                $data['attend_list'][$key] = [
+                array_push($data['users'][$userKey]['user']['attend_list'], [
+
                     'id' => $value->id,
                     'user_id' => $value->user->id,
                     'name' => $value->user->name,
@@ -286,13 +302,12 @@ class AbsenController extends Controller
                     'checkout_address' => $value->checkout_address,
                     'checkout_description' => $value->checkout_description,
                     'time_elapse' => $time_elapse1 . ':' . $time_elapse2,
-    
-    
-                ];
-    
-            } //end if
+                    
+                ]);
 
-        } //end loop
+            } //end foreach attends
+            
+        } //end foreach users
 
         $this->viewModel = Response::viewModel($data);
     }
@@ -329,6 +344,15 @@ class AbsenController extends Controller
             $userId = $selectedUserId;
         } //end if
 
+        // return dd([
+        //     'user' => $user,
+        //     'userId' => $userId,
+        //     'selectedUserId' => $selectedUserId,
+        //     'startdt' => $startdt,
+        //     'enddt' => $enddt,
+        //     'historyMedia' => $historyMedia,
+        // ]);
+
         $resultView = null;
         if ($historyMedia == 'view') {
             $resultView = 'check-history-view';
@@ -338,28 +362,7 @@ class AbsenController extends Controller
             $resultView = 'check-history-pdf';
         } //end if
 
-        $startDateIso = ConvertDate::strDateToDate($startdt);
-        $endDateIso = ConvertDate::strDateToDate($enddt);
-        if (isset($endDateIso)) {
-
-            $endDateIso = Carbon::create($endDateIso->year, $endDateIso->month, $endDateIso->day, 25, 0, 0);
-
-        } //end if
-
-        // $tesData = [
-        //     '$startDateIso' =>[
-        //     '$startDateIso->year' => $startDateIso->year,
-        //     '$startDateIso->month' => $startDateIso->month,
-        //     '$startDateIso->day' => $startDateIso->day],
-        //     '$endDateIso' =>[
-        //         '$endDateIso->year' => $endDateIso->year,
-        //         '$endDateIso->month' => $endDateIso->month,
-        //         '$endDateIso->day' => $endDateIso->day],
-        // ];
-        // return dd($tesData);
-
-        // $this->history($user->id, $startDateIso, $endDateIso);
-        $this->history($userId, $startDateIso, $endDateIso);
+        $this->history($userId, $startdt, $enddt);
 
         if (isset($selectedUserId)) {
             return view($this->sViewRoot.'.'.$resultView,

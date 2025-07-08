@@ -18,14 +18,6 @@
     </div>
 @endsection
 
-@section('js')
-
-<script>
-
-</script>
-
-@endsection
-
 @section('content')
 
 @if (!isset($admin))
@@ -52,5 +44,11 @@
     @include('fo.absen.list')
 </div>
 
+
+@endsection
+
+@section('js')
+
+@include('fo.absen._script')
 
 @endsection

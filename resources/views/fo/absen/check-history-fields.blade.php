@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-6">
             <select id="userid" name="userid" class="form-control select2">
+                <option value="-1">All</option>
                 @foreach ($users as $key => $item)
 
                     <option value="{{ $item->id }}">{{ $item->name }}</option>

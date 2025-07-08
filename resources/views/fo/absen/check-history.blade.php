@@ -43,9 +43,9 @@
         <li class="nav-item">
             <button id="btnView" type="button" class="btn btn-block btn-info btn-flat">View</button>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <button id="btnPDF" type="button" class="btn btn-block btn-danger btn-flat">PDF</button>
-        </li>
+        </li> -->
     </ul>
 
 </nav>
