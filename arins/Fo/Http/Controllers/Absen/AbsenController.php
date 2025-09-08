@@ -423,12 +423,12 @@ class AbsenController extends Controller
         $utc_offset = $request->input('utc_offset');
 
         //validasi upload foto mandatory
-        if (!isset($upload)) {
+        // if (!isset($upload)) {
 
-            return redirect('/')->with('status-failed', 'CHECKIN GAGAL - Foto harus dilampirkan')
-                                ->with('checkin_description', $request->input('checkin_description'));
+        //     return redirect('/')->with('status-failed', 'CHECKIN GAGAL - Foto harus dilampirkan')
+        //                         ->with('checkin_description', $request->input('checkin_description'));
             
-        } //end if
+        // } //end if
 
         //validasi Timezone
         if (!isset($utc_tz) || !isset($utc_millis) || !isset($utc_offset)) {
@@ -529,12 +529,12 @@ class AbsenController extends Controller
             $utc_offset = $request->input('utc_offset');
 
             //validasi upload foto mandatory
-            if (!isset($upload)) {
+            // if (!isset($upload)) {
 
-                return redirect('/')->with('status-failed', 'CHECKOUT GAGAL - Foto harus dilampirkan')
-                                     ->with('checkout_description', $request->input('checkout_description'));
+            //     return redirect('/')->with('status-failed', 'CHECKOUT GAGAL - Foto harus dilampirkan')
+            //                          ->with('checkout_description', $request->input('checkout_description'));
                 
-            } //end if
+            // } //end if
 
             //validasi Timezone
             if (!isset($utc_tz) || !isset($utc_millis) || !isset($utc_offset)) {
