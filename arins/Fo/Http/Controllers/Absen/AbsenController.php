@@ -449,6 +449,7 @@ class AbsenController extends Controller
         //convert to JSON
         if ($data) {
 
+
             //create temporary uploaded image
             $uploadTemp = Filex::uploadTemp($upload, $imageTemp, null, 'checkin');
             $request->session()->flash('imageTemp', $uploadTemp);
@@ -465,7 +466,11 @@ class AbsenController extends Controller
             $attend->checkin_longitude = $longitude;
             $attend->checkin_ip = null;
             $attend->checkin_metadata = json_encode($data);
-            $attend->checkin_image = $checkin_image;
+
+            if (isset($checkin_image)) {
+                $attend->checkin_image = $checkin_image;
+            }
+
             $attend->checkin_title = $request->input('checkin_title');
             $attend->checkin_subtitle = $request->input('checkin_subtitle');
             $attend->checkin_description = $request->input('checkin_description');
@@ -563,7 +568,13 @@ class AbsenController extends Controller
                 $attend->checkout_longitude = $longitude;
                 $attend->checkout_ip = null;
                 $attend->checkout_metadata = json_encode($data);
-                $attend->checkout_image = $checkout_image;
+
+                if (!isset($checkout_image)) {
+
+                    $attend->checkout_image = $checkout_image;
+                    
+                }
+
                 $attend->checkout_title = $request->input('checkout_title');
                 $attend->checkout_subtitle = $request->input('checkout_subtitle');
                 $attend->checkout_description = $request->input('checkout_description');
