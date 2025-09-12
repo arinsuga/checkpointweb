@@ -482,6 +482,7 @@ class AbsenController extends Controller
             $attend->checkin_utctz = $utc_tz;
             $attend->checkin_utcmillis = $utc_millis;
             $attend->checkin_utcoffset = $utc_offset;
+            $attend->checkin_client = 'web';
 
             $attend->save();
 
@@ -582,6 +583,7 @@ class AbsenController extends Controller
                 $attend->checkout_utctz = $utc_tz;
                 $attend->checkout_utcmillis = $utc_millis;
                 $attend->checkout_utcoffset = $utc_offset;
+                $attend->checkout_client = 'web';
 
 
                 $attend->save();
