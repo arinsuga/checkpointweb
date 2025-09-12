@@ -467,7 +467,7 @@ class AbsenController extends Controller
             $attend->checkin_ip = null;
             $attend->checkin_metadata = json_encode($data);
 
-            if (isset($checkin_image)) {
+            if (isset($upload)) {
                 $attend->checkin_image = $checkin_image;
             }
 
@@ -570,7 +570,7 @@ class AbsenController extends Controller
                 $attend->checkout_ip = null;
                 $attend->checkout_metadata = json_encode($data);
 
-                if (!isset($checkout_image)) {
+                if (isset($upload)) {
 
                     $attend->checkout_image = $checkout_image;
                     
